@@ -31,8 +31,10 @@ def process_song_data(spark, input_data, output_data):
     """ Ingest and process song data. """
     # get filepath to song data file
     # Note: it looks like the path is song-data NOT song_data as specified in the Udacity instructions
-    # song_data = input_data + "song_data/*/*/*/*.json"
-    song_data = input_data + "song-data/A/D/J/*.json"
+    song_data = input_data + "song_data/*/*/*/*.json"
+
+    # For testing purposes:
+    # song_data = input_data + "song-data/A/D/J/*.json"
 
     # read song data file
     # Reference: https://stackoverflow.com/a/60116904/975592
@@ -82,8 +84,10 @@ def process_song_data(spark, input_data, output_data):
 def process_log_data(spark, input_data, output_data):
     """ Ingest and process log data. """
     # get filepath to log data file
-    # log_data = input_data + "log-data/*/*/*/*.json"
-    log_data = input_data + "log-data/2018/11/2018-11-30-events.json"
+    log_data = input_data + "log-data/*/*/*/*.json"
+
+    # For testing purposes:
+    #log_data = input_data + "log-data/2018/11/2018-11-30-events.json"
 
     # read log data file
     df = spark.read.json(log_data)
@@ -144,8 +148,11 @@ def process_log_data(spark, input_data, output_data):
     time_table.write.partitionBy('year', 'month').parquet(output_data + 'time_table.parquet', 'overwrite')
 
     # read in song data to use for songplays table
-    # song_data = input_data + "song_data/*/*/*/*.json"
-    song_data = input_data + "song-data/A/D/J/*.json"
+    song_data = input_data + "song_data/*/*/*/*.json"
+
+    # For testing purposes:
+    #song_data = input_data + "song-data/A/D/J/*.json"
+    
     song_df = spark.read.json(song_data)
 
     # join song and log datasets
@@ -190,7 +197,7 @@ def main():
     """ Process song and log data """
     spark = create_spark_session()
     input_data = "s3a://udacity-dend/"
-    output_data = "output_data/"
+    output_data =
 
     process_song_data(spark, input_data, output_data)
     process_log_data(spark, input_data, output_data)
