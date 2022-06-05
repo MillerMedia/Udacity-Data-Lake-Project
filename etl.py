@@ -84,7 +84,7 @@ def process_song_data(spark, input_data, output_data):
 def process_log_data(spark, input_data, output_data):
     """ Ingest and process log data. """
     # get filepath to log data file
-    log_data = input_data + "log-data/*/*/*/*.json"
+    log_data = input_data + "log-data/*/*/*.json"
 
     # For testing purposes:
     #log_data = input_data + "log-data/2018/11/2018-11-30-events.json"
@@ -152,7 +152,7 @@ def process_log_data(spark, input_data, output_data):
 
     # For testing purposes:
     #song_data = input_data + "song-data/A/D/J/*.json"
-    
+
     song_df = spark.read.json(song_data)
 
     # join song and log datasets
